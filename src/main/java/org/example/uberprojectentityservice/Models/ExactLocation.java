@@ -10,6 +10,6 @@ import lombok.*;
 @AllArgsConstructor
 @NoArgsConstructor
 public class ExactLocation extends BaseModel{
-    private double lattitude;
+    private double latitude;
     private double longitude;
 }
