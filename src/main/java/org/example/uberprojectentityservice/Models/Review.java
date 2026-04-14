@@ -1,6 +1,8 @@
 package org.example.uberprojectentityservice.Models;
 
 import jakarta.persistence.*;
+import jakarta.validation.constraints.Max;
+import jakarta.validation.constraints.Min;
 import lombok.*;
 import org.hibernate.annotations.Fetch;
 
@@ -17,6 +19,8 @@ public class Review extends BaseModel{
     @Column(nullable = false)
     private String content;
 
+    @Min(1)
+    @Max(5)
     @Column(nullable = true)
     private Double rating;
 

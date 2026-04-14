@@ -5,9 +5,6 @@ import jakarta.persistence.*;
 import jakarta.validation.constraints.DecimalMax;
 import jakarta.validation.constraints.DecimalMin;
 import lombok.*;
-import org.hibernate.annotations.Fetch;
-
-import java.awt.print.Book;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -19,17 +16,13 @@ import java.util.List;
 @AllArgsConstructor
 @JsonIgnoreProperties({"hibernateLazyInitializer","handler","bookings"})
 public class Passenger extends BaseModel{
-    @Column(nullable = false)
-    private String name;
 
-    @Column(nullable = false)
+    @OneToOne
+    @JoinColumn(name = "user_id", nullable = false, unique = true)
+    private User user;
+
+    @Column(nullable = false, unique = true)
     private String phoneNumber;
-
-    @Column(nullable = false)
-    private String email;
-
-    @Column(nullable = false)
-    private String password;
 
     @OneToMany(mappedBy = "passenger")
     private List<Booking> bookings= new ArrayList<>();
@@ -39,12 +32,11 @@ public class Passenger extends BaseModel{
 
     @DecimalMin(value ="0.00",message = "Rating must be greater than or equal to 0.00")
     @DecimalMax(value ="5.00", message= " Rating must be less than or equal to 5.00")
-    private Double rating;
+    private Double rating=0.0;
 
     @OneToOne
     private ExactLocation lastKnownLocation;
 
     @OneToOne
     private ExactLocation home;
-
 }

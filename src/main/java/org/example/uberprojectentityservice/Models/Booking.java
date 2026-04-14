@@ -1,11 +1,10 @@
 package org.example.uberprojectentityservice.Models;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import jakarta.persistence.*;
 import lombok.*;
 
-import java.time.LocalDate;
 import java.time.LocalDateTime;
-import java.util.Date;
 
 @Entity
 @Getter
@@ -16,7 +15,9 @@ import java.util.Date;
 //@Table(indexes={
 //        @Index(columnList = "driver_id")
 //})
+@JsonIgnoreProperties({"hibernateLazyInitializer","handler","bookings"})
 public class Booking extends BaseModel{
+
     @Enumerated(value= EnumType.STRING)
     private BookingStatus bookingStatus;
 
