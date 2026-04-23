@@ -27,6 +27,8 @@ public class Booking extends BaseModel{
 
     private Long totalDistance;
 
+    private BookingStatus previousStatus;
+
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name="driver_id")
     private Driver driver;
